@@ -24,6 +24,16 @@ RSpec.describe Visitor do
     end
   end
 
+  describe '#can_afford?()' do
+    it 'returns boolean whether can pay for ride' do
+      expect(visitor1.spending_money).to eq(10)
+      expect(visitor1.can_afford?(5)).to be true
+
+      visitor1.pay(6)
+      expect(visitor1.can_afford?(5)).to be false
+    end
+  end
+
   describe '#add_preference()' do
     it 'adds preferences to preference array' do
       expect(visitor1.preferences).to eq([])

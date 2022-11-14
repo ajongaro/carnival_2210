@@ -16,6 +16,10 @@ class Visitor
     @height >= height_requirement
   end
 
+  def can_afford?(admission_fee)
+    @spending_money >= admission_fee
+  end
+
   def pay(admission_fee)
     @spending_money -= admission_fee
   end

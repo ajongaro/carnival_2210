@@ -35,4 +35,10 @@ class Carnival
     top_ride = all_rides_with_revenue.max_by { |ride, count| count }
     top_ride.delete_if { |x| x.class == Integer }
   end
+
+  def total_revenue
+    @rides.map do |ride|
+      ride.total_revenue
+    end.sum
+  end
 end
