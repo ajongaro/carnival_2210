@@ -23,7 +23,6 @@ class Carnival
     most_popular.delete_if { |x| x.class == Integer } 
   end
 
-  # add test
   def all_rides_with_revenue
     hash = {}
     all_rides.each do |ride, _|
