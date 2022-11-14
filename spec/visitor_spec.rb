@@ -15,6 +15,15 @@ RSpec.describe Visitor do
     end
   end
 
+  describe '#pay()' do
+    it 'pays an admission fee' do
+      expect(visitor1.spending_money).to eq(10)
+
+      visitor1.pay(1)
+      expect(visitor1.spending_money).to eq(9)
+    end
+  end
+
   describe '#add_preference()' do
     it 'adds preferences to preference array' do
       expect(visitor1.preferences).to eq([])
