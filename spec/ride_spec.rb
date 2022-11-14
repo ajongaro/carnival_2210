@@ -3,6 +3,7 @@ require './lib/ride'
 
 RSpec.describe Ride do
   let(:ride1) { Ride.new({ name: 'Carousel', min_height: 24, admission_fee: 1, excitement: :gentle }) }
+  let(:ride3) { Ride.new({ name: 'Death Drop', min_height: 48, admission_fee: 5, excitement: :thrilling }) }
   let(:visitor1) { Visitor.new('Bruce', 54, '$10')}
   let(:visitor2) { Visitor.new('Tucker', 36, '$5')}
   let(:visitor3) { Visitor.new('Penny', 64, '$15')}
@@ -45,6 +46,19 @@ RSpec.describe Ride do
       visitor1.pay(ride1.admission_fee)
 
       expect(visitor1.spending_money).to eq(8)
+    end
+
+    it 'does not allow unqualified rider' do
+      visitor1.add_preference(:gentle)
+      visitor2.add_preference(:gentle)
+
+      expect(ride1.total_rides).to eq(0)
+      ride1.board_rider(visitor1)
+      expect(ride1.total_rides).to eq(1)
+
+      expect(ride3.total_rides).to eq(0)
+      ride3.board_rider(visitor2)
+      expect(ride3.total_rides).to eq(0)
     end
   end
   
