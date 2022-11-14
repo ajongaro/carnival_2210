@@ -19,6 +19,21 @@ class Carnival
   end
 
   def most_popular_ride
-    all_rides.max_by { |ride, count| count }.first
+    most_popular = all_rides.max_by { |ride, count| count }
+    most_popular.delete_if { |x| x.class == Integer } 
+  end
+
+  # add test
+  def all_rides_with_revenue
+    hash = {}
+    all_rides.each do |ride, _|
+       hash[ride] = ride.total_revenue
+    end
+    hash
+  end
+
+  def most_profitable_ride
+    top_ride = all_rides_with_revenue.max_by { |ride, count| count }
+    top_ride.delete_if { |x| x.class == Integer }
   end
 end
